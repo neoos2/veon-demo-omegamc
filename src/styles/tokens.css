@@ -1,0 +1,48 @@
+/* Hallmark · shape: patient route spine · genre: modern-minimal · theme: custom · job: book · idea: "Омега — остання літера: головна як один маршрут пацієнта від дзвінка до операційної, кожна зупинка прив'язана до адреси біля метро" · vibe: "точно, спокійно, фірмово, по-київськи конкретно"
+ * paper: #FFFFFF · accent: #DAAC62 · display: Piazzolla · body: Onest · hero: синє поле, H1 антиквою, золота кнопка й номер, рядок трьох станцій метро з годинами · nav: sticky compact, 3 anchors + tel + Записатися · footer: кінець лінії маршруту зі знаком Ω, адреси й телефони · imagery: client photos · signature: золота лінія маршруту із зупинками від H1 до футера
+ * axes: light/roman-serif/chromatic-amber · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+/* Client design tokens from design/concept.md (veon-concept: colors, fonts). */
+html, body { overflow-x: clip; }
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f2f4f7;
+  --color-ink: #252f41;
+  --color-text: #252f41;
+  --color-muted: #5b6475;
+  --color-accent: #daac62;
+  --color-accent-ink: #4d3608;
+  --color-on-dark: #ffffff;
+  --color-on-dark-soft: #f2f4f7;
+  --color-on-dark-muted: #a9b1c0;
+  --color-line: #d8dde6;
+  --color-line-dark: rgb(255 255 255 / .18);
+  --color-accent-hover: #e6c286;
+  --color-ink-hover: #36415a;
+  --color-scrim: rgb(37 47 65 / .6);
+
+  --font-display: "Piazzolla", Georgia, "Times New Roman", serif;
+  --font-body: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --fs-sm: .875rem;
+  --fs-base: 1.0625rem;
+  --fs-md: 1.3125rem;
+  --fs-lg: 1.6875rem;
+  --fs-xl: clamp(1.75rem, 1.2rem + 1.9vw, 2.625rem);
+  --fs-h1: clamp(2.125rem, 1.35rem + 3.4vw, 4.25rem);
+  --fs-fact: clamp(4.5rem, 2.5rem + 9vw, 9rem);
+
+  --s-1: .5rem; --s-2: 1rem; --s-3: 1.5rem; --s-4: 2.5rem; --s-5: 4rem; --s-6: 6.5rem;
+  --section-y: clamp(4rem, 3rem + 4vw, 6.5rem);
+  --space: clamp(1rem, 0.6rem + 1.6vw, 3rem);
+  --pad: 2.25rem;
+  --container: 1200px;
+  --header-h: 64px;
+  --radius: 4px;
+  --tap: 44px;
+
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur: 500ms;
+  --dur-fast: 200ms;
+}
+@media (min-width: 768px) { :root { --pad: 4rem; } }
+@media (min-width: 1024px) { :root { --pad: 6rem; } }

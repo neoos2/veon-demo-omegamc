@@ -1,0 +1,201 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FutureLink from "../components/FutureLink.astro";
+import { Image } from "astro:assets";
+import doctorPhoto from "../assets/client/chuzha-mykola.webp";
+import labPhoto from "../assets/client/laboratoriia-analizator.jpg";
+import { phones, telegram, socials, branches } from "../data/site";
+import piazzolla from "../assets/fonts/piazzolla-cyrillic-wght-normal.woff2?url";
+import onest from "../assets/fonts/onest-cyrillic-wght-normal.woff2?url";
+
+const note = "Розділ у розробці";
+const title = "Медичний центр «Омега-Київ» у Києві: КТ, МРТ, хірургія";
+const description = "Медичний центр у Києві з 2003 року: прийоми лікарів, КТ, МРТ, УЗД, лабораторія, хірургія та стаціонар біля метро. Запис: 044 333 4 333.";
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "MedicalOrganization",
+  name: "Медичний центр «Омега-Київ»",
+  telephone: ["+380443334333", "0800753357"],
+  foundingDate: "2003",
+  sameAs: [telegram, ...socials.map((s) => s.href)],
+};
+const arrow = `<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>`;
+---
+<Base lang="uk" title={title} description={description}>
+  <Fragment slot="head">
+    <link rel="preload" as="font" type="font/woff2" href={piazzolla} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={onest} crossorigin />
+    <meta name="theme-color" content="#252F41" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </Fragment>
+  <Header slot="header" />
+
+  <div class="spine" aria-hidden="true"></div>
+
+  <Section id="hero" class="hero dark" rec="W-R001,W-R004">
+    <div class="container"><div class="col">
+      <div class="hero__grid">
+        <div>
+          <h1 data-rec="W-R006,W-R007">Медичний центр <span class="nobr">«Омега-Київ»</span>&nbsp;— від першої консультації до операції</h1>
+          <p class="hero__sub">Консультації, власна діагностика (КТ, МРТ, УЗД, лабораторія), хірургія та стаціонар. З 2003 року.</p>
+        </div>
+        <div class="hero__actions">
+          <span class="hero__tel-note">Запис за телефоном</span>
+          <a class="hero__tel" href={phones[0].href} data-rec="W-R005">{phones[0].label}</a>
+          {phones[1] && <span class="visually-hidden">; </span>}
+          {phones[1] && <a class="hero__tel-alt" href={phones[1].href} data-rec="W-R005">{phones[1].label}</a>}
+          <a class="btn btn--gold" href="#booking">Записатися <Fragment set:html={arrow} /></a>
+        </div>
+      </div>
+      <ul class="stations" aria-label="Відділення біля метро" data-rec="W-R004">
+        {branches.map((b) => (
+          <li>
+            <a class="station" href="#branches">
+              <span class="station__name"><span class="metro" aria-hidden="true">М</span>{b.station}</span>
+              <span class="station__addr">{b.street}</span>
+              <span class="station__hours">{b.short}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div></div>
+  </Section>
+
+  <Section id="route" class="section light" rec="W-R004" label="Маршрут пацієнта">
+    <div class="container"><div class="col">
+      <div class="route__head">
+        <h2 class="node">Маршрут пацієнта: від консультації до стаціонару</h2>
+      </div>
+      <p class="section__lead">Усе в одній мережі: від першого прийому до хірургії. <FutureLink note={note}><span class="link-underline">Усі напрями</span></FutureLink></p>
+      <div class="stops">
+        <article class="stop" data-reveal style="--i:0">
+          <h3 class="stop__title"><span class="stop__num" aria-hidden="true">01</span><FutureLink note={note}>Консультація</FutureLink></h3>
+          <ul class="stop__list">
+            <li>Гінекологія</li>
+            <li>Урологія <span class="price">від 700 грн</span></li>
+            <li>Неврологія</li>
+            <li>Ортопедія і травматологія: консультація з артрозу колінного суглоба <span class="price">від 650 грн</span></li>
+            <li>Ендокринологія</li>
+            <li>Кардіологія</li>
+            <li>Терапія</li>
+            <li>Ведення вагітності</li>
+            <li>Онлайн-консультації</li>
+          </ul>
+        </article>
+        <article class="stop" data-reveal style="--i:1">
+          <h3 class="stop__title"><span class="stop__num" aria-hidden="true">02</span><FutureLink note={note}>Діагностика</FutureLink></h3>
+          <ul class="stop__list">
+            <li>Комп'ютерна томографія (КТ)</li>
+            <li>МРТ</li>
+            <li>УЗД</li>
+            <li>ЕЕГ</li>
+            <li>Лабораторія, здача аналізів</li>
+          </ul>
+        </article>
+        <article class="stop" data-reveal style="--i:2">
+          <h3 class="stop__title"><span class="stop__num" aria-hidden="true">03</span><FutureLink note={note}>Лікування</FutureLink></h3>
+          <ul class="stop__list">
+            <li>Амбулаторне лікування</li>
+            <li>Фізіотерапія</li>
+            <li>Стаціонарне лікування</li>
+          </ul>
+        </article>
+        <article class="stop" data-reveal style="--i:3">
+          <h3 class="stop__title"><span class="stop__num" aria-hidden="true">04</span><FutureLink note={note}>Хірургія і стаціонар</FutureLink></h3>
+          <div>
+            <ul class="stop__list">
+              <li>Хірургічні втручання</li>
+              <li>Центр хірургії: вул. Максимовича, 10, м. «Васильківська»</li>
+            </ul>
+            <a class="btn btn--ghost" href="#booking">Записатися <Fragment set:html={arrow} /></a>
+          </div>
+        </article>
+      </div>
+    </div></div>
+  </Section>
+
+  <Section id="doctors" class="section surface" label="Лікарі">
+    <div class="container"><div class="col">
+      <h2 class="node">Лікарі</h2>
+      <div class="doctors__grid">
+        <figure class="doctor__photo">
+          <Image src={doctorPhoto} alt="Чужа Микола Миколайович, головний лікар медичного центру «Омега-Київ»" widths={[320, 448]} sizes="(min-width: 900px) 400px, 88vw" loading="lazy" decoding="async" />
+        </figure>
+        <div>
+          <p class="doctor__role">Головний лікар</p>
+          <h3 class="doctor__name">Чужа Микола Миколайович</h3>
+          <div class="facts">
+            <p class="fact">Акушер-гінеколог<span>вищої категорії</span></p>
+            <p class="fact">34 роки<span>досвіду</span></p>
+          </div>
+          <p class="doctor__note">У центрі працюють лікарі різного профілю: спеціалісти зі стажем і відео-візитками.</p>
+          <div class="doctor__actions">
+            <a class="btn btn--ghost" href={phones[0].href} data-rec="W-R004">Записатися <Fragment set:html={arrow} /></a>
+            <FutureLink note={note}><span class="link-underline">Усі лікарі</span></FutureLink>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </Section>
+
+  <Section id="history" class="section dark" label="З 2003 року">
+    <div class="container"><div class="col">
+      <h2 class="node">З 2003 року на Володимирській</h2>
+      <div class="history__grid">
+        <div>
+          <p class="history__year" aria-label="2003 рік">2003</p>
+          <p class="history__text">Перше відділення центру на вул. Володимирській, 81-А. Сьогодні шлях пацієнта від консультації та власної діагностики (лабораторія, УЗД, КТ, МРТ) до лікування й хірургії проходить в одній мережі з трьома адресами біля метро.</p>
+        </div>
+        <figure class="history__photo">
+          <Image src={labPhoto} alt="Лаборантка центру «Омега-Київ» біля біохімічного аналізатора" widths={[480, 854]} sizes="(min-width: 900px) 540px, 92vw" loading="lazy" decoding="async" />
+          <figcaption>Власна лабораторія центру</figcaption>
+        </figure>
+      </div>
+    </div></div>
+  </Section>
+
+  <Section id="branches" class="section light" label="Адреси відділень">
+    <div class="container"><div class="col">
+      <h2 class="node">Адреси відділень біля метро</h2>
+      <div class="boards">
+        {branches.map((b, i) => (
+          <article class="board" data-reveal style={`--i:${i}`}>
+            <h3 class="board__station"><span class="metro" aria-hidden="true">М</span>{b.station}</h3>
+            <p class="board__street">{b.street}, Київ</p>
+            <p class="board__note">{b.note}</p>
+            <p class="board__hours">{b.hours.map((h) => <span class="station__addr" style="color:inherit">{h}</span>)}</p>
+            <div class="board__actions">
+              <a class="board__route" href={b.route} target="_blank" rel="noopener" data-rec="W-R005">Маршрут на карті<span class="visually-hidden">: {b.street} (відкриється в новій вкладці)</span></a>
+              <a class="board__tel" href={phones[0].href} data-rec="W-R005">{phones[0].label}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div></div>
+  </Section>
+
+  <Section id="booking" class="section dark" label="Записатися на прийом">
+    <div class="container"><div class="col">
+      <h2 class="node">Записатися на прийом</h2>
+      <p class="section__lead">Запис за телефоном. Зателефонуйте, і ми підберемо лікаря й відділення.</p>
+      <div class="booking__grid">
+        <div>
+          {phones.map((p, i) => <>{i > 0 && <span class="visually-hidden">; </span>}<a class="booking__tel" href={p.href} data-rec="W-R005">{p.label}</a></>)}
+        </div>
+        <div>
+          <span class="booking__label">Telegram центру</span>
+          <a class="booking__tg" href={telegram} target="_blank" rel="noopener" data-rec="W-R005">Написати в Telegram<span class="visually-hidden"> (відкриється в новій вкладці)</span></a>
+          <span class="booking__label" style="margin-top:1rem">Ми в соцмережах</span>
+          <div class="booking__links">
+            {socials.map((s) => <a href={s.href} target="_blank" rel="noopener" data-rec="W-R005">{s.name}</a>)}
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </Section>
+
+  <Footer slot="footer" />
+</Base>

@@ -1,0 +1,46 @@
+---
+import FutureLink from "./FutureLink.astro";
+import { phones, branches, socials, telegram } from "../data/site";
+const note = "Розділ у розробці";
+---
+<footer class="site-footer dark">
+  <div class="container">
+    <div class="col">
+      <span class="omega-end" aria-hidden="true">
+        <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="var(--color-ink)" stroke="var(--color-accent)" stroke-width="1.5"/><path d="M11.5 27h5c-2.8-1.7-4.5-4.2-4.5-7.2 0-3.9 2.9-6.6 7.5-6.6s7.5 2.7 7.5 6.6c0 3-1.7 5.5-4.5 7.2h5" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(.5 0)"/></svg>
+        <span class="omega-end__label">Кінцева зупинка маршруту</span>
+      </span>
+      <div class="footer__grid">
+        <div>
+          <h2 class="footer__h">Адреси</h2>
+          <ul class="footer__list footer__addr">
+            {branches.map((b) => <li><strong>{b.street}</strong><span>м. «{b.station}» · {b.short}</span></li>)}
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer__h">Телефони та соцмережі</h2>
+          <ul class="footer__list">
+            {phones.map((p) => <li><a href={p.href}>{p.label}</a><span class="visually-hidden">; </span></li>)}
+            <li><a href={telegram} target="_blank" rel="noopener">Telegram</a></li>
+            {socials.map((s) => <li><a href={s.href} target="_blank" rel="noopener">{s.name}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer__h">Інформація</h2>
+          <ul class="footer__list">
+            <li><FutureLink note={note}>Ціни</FutureLink></li>
+            <li><FutureLink note={note}>Про центр</FutureLink></li>
+            <li><FutureLink note={note}>Ліцензії</FutureLink></li>
+            <li><FutureLink note={note}>Українська / Русский</FutureLink></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<dialog class="future-dialog" id="future-dialog" aria-labelledby="future-title">
+  <h2 id="future-title">Розділ у розробці</h2>
+  <p>Цей розділ з'явиться в повній версії сайту. Записатися можна за телефоном:</p>
+  <a class="future-dialog__tel" href={phones[0].href}>{phones[0].label}</a>
+  <form method="dialog"><button class="btn btn--ink" type="submit">Закрити</button></form>
+</dialog>
